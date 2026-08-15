@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Agence Ruelas — Transfers & Tours Lisboa</title>
+  <meta name="description" content="Transfers privados em Lisboa: aeroporto, comboio, metro e hotéis. Tours Sintra, Cascais e Fátima. Reserva pública.">
+  <meta name="theme-color" content="#0D2137">
+  <link rel="icon" href="favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+  <link rel="apple-touch-icon" href="icon-180.png">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="site.css">
+</head>
+<body>
+  <div class="topbar">
+    <div class="wrap">
+      <div class="top-contacts">
+        <a id="top-phone" href="tel:+351210000000"></a>
+        <span class="top-extra"> · </span>
+        <a class="top-extra" id="top-email" href="mailto:reservas@agenceruelas.pt"></a>
+        <span> · 24/7</span>
+      </div>
+      <div class="langs" id="langs"></div>
+    </div>
+  </div>
+
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="#top">
+        <img src="logo-topbar.png" alt="Agence Ruelas" width="48" height="48">
+        <span>
+          <b>Agence Ruelas</b>
+          <small data-i18n="brandSub">Transfers & Tours Lisboa</small>
+        </span>
+      </a>
+      <nav class="nav">
+        <a href="#book" data-i18n="navBook">Reservar</a>
+        <a href="#tours" data-i18n="navTours">Tours</a>
+        <a href="#fleet" data-i18n="navFleet">Frota</a>
+        <a href="#track" data-i18n="navTrack">Seguir</a>
+        <a href="#about" data-i18n="navAbout">A agência</a>
+        <button class="btn btn-ghost" type="button" id="btn-account" onclick="openAuth()" data-i18n="accountBtn">Conta</button>
+        <a class="btn btn-gold" href="#book" data-i18n="ctaBook">Reservar transfer</a>
+      </nav>
+      <button class="menu-btn" id="menu-btn" type="button" aria-label="Menu" aria-controls="drawer" aria-expanded="false" onclick="toggleMenu()">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <div class="nav-drawer" id="drawer" onclick="if(event.target===this)toggleMenu(false)">
+    <nav id="drawer-panel" role="dialog" aria-modal="true" aria-labelledby="drawer-title">
+      <div class="drawer-handle" aria-hidden="true"></div>
+      <div class="drawer-head">
+        <strong id="drawer-title">Agence Ruelas</strong>
+        <button class="drawer-close" id="drawer-close" type="button" onclick="toggleMenu(false)" aria-label="Fechar">✕</button>
+      </div>
+      <a class="btn btn-gold drawer-cta" href="#book" onclick="toggleMenu(false)" data-i18n="ctaBook">Reservar transfer</a>
+      <a href="#tours" onclick="toggleMenu(false)" data-i18n="navTours">Tours</a>
+      <a href="#fleet" onclick="toggleMenu(false)" data-i18n="navFleet">Frota</a>
+      <a href="#track" onclick="toggleMenu(false)" data-i18n="navTrack">Seguir</a>
+      <a href="#about" onclick="toggleMenu(false)" data-i18n="navAbout">A agência</a>
+      <a href="#contact" onclick="toggleMenu(false)" data-i18n="navContact">Contacto</a>
+      <button class="btn btn-ghost" type="button" onclick="toggleMenu(false);openAuth()" data-i18n="accountBtn">Conta</button>
+      <div class="drawer-langs" id="drawer-langs"></div>
+      <div class="drawer-contact">
+        <a id="drawer-phone" href="tel:+351210000000" data-i18n="callNow">Ligar</a>
+        <a id="drawer-wa" href="https://wa.me/351210000000" target="_blank" rel="noopener">WhatsApp</a>
+        <a id="drawer-mail" href="mailto:reservas@agenceruelas.pt" data-i18n="email">E-mail</a>
+      </div>
+    </nav>
+  </div>
+
+  <nav class="tabbar" id="tabbar" aria-label="Menu">
+    <a href="#book" data-tab="book">
+      <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2z"/></svg>
+      <span data-i18n="navBook">Reservar</span>
+    </a>
+    <a href="#tours" data-tab="tours">
+      <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>
+      <span data-i18n="navTours">Tours</span>
+    </a>
+    <a href="#track" data-tab="track">
+      <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm1 15h-2v-2h2zm0-4h-2V7h2z"/></svg>
+      <span data-i18n="ctaTrack">Seguir</span>
+    </a>
+    <button type="button" data-tab="menu" onclick="toggleMenu()">
+      <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M3 6h18v2H3V6zm0 5h18v2H3v-2zm0 5h18v2H3v-2z"/></svg>
+      <span data-i18n="navMenu">Menu</span>
+    </button>
+  </nav>
+
+  <section class="hero" id="top">
+    <div class="hero-media" aria-hidden="true">
+      <div class="hero-slides" id="hero-slides">
+        <figure class="is-active" data-pt="Alfama, Lisboa" data-en="Alfama, Lisbon" data-fr="Alfama, Lisbonne" data-es="Alfama, Lisboa">
+          <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Lisbon%20in%20a%20day%20-%20Tram%2028%20Alfama%20(39271341600).jpg?width=2000" alt="">
+        </figure>
+        <figure data-pt="Palácio da Pena, Sintra" data-en="Pena Palace, Sintra" data-fr="Palais de Pena, Sintra" data-es="Palacio de Pena, Sintra">
+          <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Sintra%20Portugal%20Pal%C3%A1cio%20da%20Pena-01.jpg?width=2000" alt="">
+        </figure>
+        <figure data-pt="Torre de Belém" data-en="Belém Tower" data-fr="Tour de Belém" data-es="Torre de Belém">
+          <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Torre%20Bel%C3%A9m%20April%202009-4a.jpg?width=2000" alt="">
+        </figure>
+        <figure data-pt="Mosteiro dos Jerónimos" data-en="Jerónimos Monastery" data-fr="Monastère des Hiéronymites" data-es="Monasterio de los Jerónimos">
+          <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Monasterio%20de%20los%20Jer%C3%B3nimos,%20Lisboa,%20Portugal,%202022-07-24,%20DD%2038-40%20HDR.jpg?width=2000" alt="">
+        </figure>
+        <figure data-pt="Castelo de São Jorge" data-en="São Jorge Castle" data-fr="Château Saint-Georges" data-es="Castillo de San Jorge">
+          <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Castelo%20de%20S%C3%A3o%20Jorge,%20Lisbon,%2020250604%201706%209397.jpg?width=2000" alt="">
+        </figure>
+        <figure data-pt="Óbidos" data-en="Óbidos" data-fr="Óbidos" data-es="Óbidos">
+          <img src="https://commons.wikimedia.org/wiki/Special:FilePath/%C3%93bidos%20-%20Castle%20walls%20(53199958620).jpg?width=2000" alt="">
+        </figure>
+        <figure data-pt="Marina de Cascais" data-en="Cascais Marina" data-fr="Marina de Cascais" data-es="Marina de Cascais">
+          <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Marina%20de%20Cascais%20(Portugal).jpg?width=2000" alt="">
+        </figure>
+        <figure data-pt="Cabo da Roca" data-en="Cabo da Roca" data-fr="Cabo da Roca" data-es="Cabo da Roca">
+          <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Portugal%20Cabo-da-Roca-Lighthouse-03.jpg?width=2000" alt="">
+        </figure>
+      </div>
+      <div class="hero-veil"></div>
+    </div>
+    <div class="wrap hero-copy">
+      <div class="kicker hero-kicker" data-i18n="heroKicker">Lisboa · 24 horas</div>
+      <h1 data-i18n="heroTitle">Transfers privados e tours a partir de Lisboa.</h1>
+      <p class="lead" data-i18n="heroLead">Aeroporto, comboio, metro ou hotel. Motorista dedicado, preço claro, reserva em poucos minutos.</p>
+      <span class="hero-note" data-i18n="heroNote">Aberto ao público — qualquer viajante pode reservar.</span>
+      <div class="hero-cta">
+        <a class="btn btn-gold btn-pulse" href="#book" data-i18n="ctaBook">Reservar transfer</a>
+        <a class="btn btn-ghost-light" href="#tours" data-i18n="navTours">Tours</a>
+      </div>
+    </div>
+    <button class="hero-arrow prev" id="hero-prev" type="button" aria-label="Previous">‹</button>
+    <button class="hero-arrow next" id="hero-next" type="button" aria-label="Next">›</button>
+    <div class="hero-nav">
+      <div class="hero-place" id="hero-place">Alfama, Lisboa</div>
+      <div class="hero-thumbs" id="hero-thumbs"></div>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <section class="booking" id="book">
+      <div class="booking-head">
+        <div>
+          <h2 data-i18n="bookTitle">Reservar um transfer</h2>
+          <p data-i18n="bookLead">Escolha o ponto de partida, o hotel de destino e os dados da viagem.</p>
+        </div>
+        <div class="steps" id="steps">
+          <span class="on" data-step="1" data-i18n="step1">Trajeto</span>
+          <span data-step="2" data-i18n="step2">Veículo</span>
+          <span data-step="3" data-i18n="step3">Extras</span>
+          <span data-step="4" data-i18n="step4">Passageiro</span>
+          <span data-step="5" data-i18n="step5">Confirmação</span>
+        </div>
+      </div>
+      <div class="booking-body">
+        <div id="panel-1">
+          <div class="types" id="trip-types"></div>
+          <div class="grid-2">
+            <div class="field" id="pickup-field">
+              <label data-i18n="pickup">Ponto de partida</label>
+              <select id="pickup"></select>
+              <div class="combo hidden" id="pickup-hotel-combo">
+                <input id="pickup-hotel-q" type="search" autocomplete="off" data-i18n-placeholder="hotelPlaceholder">
+                <div class="combo-list" id="pickup-hotel-list"></div>
+              </div>
+              <div id="pickup-hotel-extra" class="hidden">
+                <label class="check"><input type="checkbox" id="pickup-hotel-custom"> <span data-i18n="hotelNotListed"></span></label>
+                <div id="pickup-address-wrap" class="hidden" style="margin-top:8px">
+                  <input id="pickup-hotel-name" type="text" data-i18n-placeholder="hotelNamePh">
+                  <textarea id="pickup-address" rows="2" style="margin-top:8px" data-i18n-placeholder="hotelAddressPh"></textarea>
+                </div>
+              </div>
+              <div id="custom-pickup-wrap" class="hidden">
+                <label class="check"><input type="checkbox" id="pickup-manual"> <span data-i18n="pickupManual"></span></label>
+                <div id="pickup-manual-fields" class="hidden" style="margin-top:8px">
+                  <input id="pickup-manual-name" type="text" data-i18n-placeholder="hotelNamePh">
+                  <textarea id="pickup-manual-address" rows="2" style="margin-top:8px" data-i18n-placeholder="hotelAddressPh"></textarea>
+                </div>
+              </div>
+            </div>
+            <div class="field" id="dropoff-field">
+              <label data-i18n="dropoff">Destino</label>
+              <select id="dropoff-select" class="hidden"></select>
+              <div class="combo" id="hotel-combo">
+                <input id="hotel-q" type="search" autocomplete="off" data-i18n-placeholder="hotelPlaceholder">
+                <div class="combo-list" id="hotel-list"></div>
+              </div>
+              <div id="hotel-extra">
+                <p class="meta" data-i18n="destManualHint" style="margin:6px 0"></p>
+                <p class="meta" id="hotel-count"></p>
+                <label class="check"><input type="checkbox" id="hotel-custom"> <span data-i18n="hotelNotListed"></span></label>
+                <div id="hotel-address-wrap" class="hidden" style="margin-top:8px">
+                  <input id="hotel-name-custom" type="text" data-i18n-placeholder="hotelNamePh">
+                  <textarea id="hotel-address" rows="2" style="margin-top:8px" data-i18n-placeholder="hotelAddressPh"></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="grid-4" style="margin-top:14px">
+            <div class="field"><label data-i18n="date">Data</label><input id="date" type="date"></div>
+            <div class="field"><label data-i18n="time">Hora</label><input id="time" type="time" value="14:00"></div>
+            <div class="field" id="flight-wrap"><label data-i18n="flight">Nº de voo</label><input id="flight" type="text" placeholder="TP1234"></div>
+            <div class="field"><label data-i18n="room">Quarto</label><input id="room" type="text"></div>
+          </div>
+          <div class="grid-2" id="return-wrap" style="margin-top:14px;display:none">
+            <div class="field"><label data-i18n="returnDate">Data regresso</label><input id="return-date" type="date"></div>
+            <div class="field"><label data-i18n="returnTime">Hora regresso</label><input id="return-time" type="time" value="10:00"></div>
+          </div>
+          <div class="grid-2" style="margin-top:14px">
+            <div class="field"><label data-i18n="pax">Passageiros</label>
+              <select id="pax"></select>
+            </div>
+            <div class="field"><label data-i18n="bags">Bagagens</label>
+              <select id="bags"></select>
+            </div>
+          </div>
+          <p class="kicker" style="margin:16px 0 8px" data-i18n="contactNeeded"></p>
+          <div class="grid-2">
+            <div class="field"><label data-i18n="phoneReq">Telefone *</label><input id="phone-early" type="tel" required></div>
+            <div class="field"><label data-i18n="emailReq">E-mail *</label><input id="email-early" type="email" required></div>
+          </div>
+          <p class="err" id="err-1"></p>
+          <div class="row-actions">
+            <span></span>
+            <button class="btn btn-navy" type="button" onclick="goStep(2)" data-i18n="nextVehicle">Escolher veículo</button>
+          </div>
+        </div>
+
+        <div id="panel-2" class="hidden">
+          <div class="cards-2" id="vehicles"></div>
+          <div class="row-actions">
+            <button class="btn btn-ghost" type="button" onclick="goStep(1)" data-i18n="back">Voltar</button>
+            <button class="btn btn-navy" type="button" onclick="goStep(3)" data-i18n="continue">Continuar</button>
+          </div>
+        </div>
+
+        <div id="panel-3" class="hidden">
+          <div class="cards-2" id="options"></div>
+          <div class="totalbar"><span data-i18n="totalEst">Total estimado</span><b id="total-display">0 €</b></div>
+          <div class="row-actions">
+            <button class="btn btn-ghost" type="button" onclick="goStep(2)" data-i18n="back">Voltar</button>
+            <button class="btn btn-navy" type="button" onclick="goStep(4)" data-i18n="continue">Continuar</button>
+          </div>
+        </div>
+
+        <div id="panel-4" class="hidden">
+          <h3 class="serif" data-i18n="passengerTitle">Dados do passageiro</h3>
+          <div class="grid-2">
+            <div class="field"><label data-i18n="firstName">Nome</label><input id="firstName" required></div>
+            <div class="field"><label data-i18n="lastName">Apelido</label><input id="lastName" required></div>
+            <div class="field"><label data-i18n="emailReq">E-mail *</label><input id="email" type="email" required></div>
+            <div class="field"><label data-i18n="phoneReq">Telefone *</label><input id="phone" type="tel" required></div>
+          </div>
+          <div class="field" style="margin-top:12px"><label data-i18n="notes">Observações</label><textarea id="notes" rows="3"></textarea></div>
+          <label class="check" id="create-account-wrap"><input type="checkbox" id="create-account"> <span data-i18n="createAccount"></span></label>
+          <div id="create-pass-wrap" class="hidden field" style="margin-top:8px"><label data-i18n="password"></label><input id="create-pass" type="password"></div>
+          <p class="note" style="margin-top:12px" data-i18n="payNote"></p>
+          <p class="err" id="err-4"></p>
+          <div class="row-actions">
+            <button class="btn btn-ghost" type="button" onclick="goStep(3)" data-i18n="back">Voltar</button>
+            <button class="btn btn-navy" type="button" onclick="submitTransfer()" data-i18n="submit">Confirmar reserva</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <section class="section" id="services">
+    <div class="wrap">
+      <div class="kicker" data-i18n="servicesKicker">Serviços</div>
+      <h2 data-i18n="servicesTitle">Do aeroporto ao hotel, das estações aos tours.</h2>
+      <div class="services">
+        <article class="service"><h3 data-i18n="s1t"></h3><p data-i18n="s1d"></p></article>
+        <article class="service"><h3 data-i18n="s2t"></h3><p data-i18n="s2d"></p></article>
+        <article class="service"><h3 data-i18n="s3t"></h3><p data-i18n="s3d"></p></article>
+        <article class="service"><h3 data-i18n="s4t"></h3><p data-i18n="s4d"></p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="tours" style="padding-top:0">
+    <div class="wrap">
+      <div class="kicker" data-i18n="toursKicker">Excursões</div>
+      <h2 data-i18n="toursTitle">Sintra, Cascais, Fátima</h2>
+      <p class="lead" data-i18n="toursLead"></p>
+      <p class="note" data-i18n="pricesNote"></p>
+      <div class="tours" id="tours-grid"></div>
+      <div class="places-block">
+        <div class="kicker" data-i18n="placesKicker"></div>
+        <h2 data-i18n="placesTitle"></h2>
+        <p class="lead" data-i18n="placesLead"></p>
+        <div id="places-mosaic"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="tour-book" style="display:none;padding-top:0">
+    <div class="wrap">
+      <div class="booking">
+        <div class="booking-head">
+          <div>
+            <h2 id="tour-book-title">Tour</h2>
+            <p data-i18n="toursLead"></p>
+          </div>
+        </div>
+        <div class="booking-body">
+          <div class="grid-2">
+            <div class="field"><label data-i18n="date">Data</label><input id="tour-date" type="date"></div>
+            <div class="field"><label data-i18n="pax">Passageiros</label><select id="tour-pax"></select></div>
+            <div class="field"><label data-i18n="tourMode">Tipo</label>
+              <select id="tour-mode">
+                <option value="private" data-i18n="modePrivate">Privativo</option>
+                <option value="shared" data-i18n="modeShared">Grupo</option>
+              </select>
+            </div>
+            <div class="field"><label data-i18n="time">Hora</label><input id="tour-time" type="time" value="08:30"></div>
+          </div>
+          <div class="field" style="margin-top:12px">
+            <label data-i18n="tourPickup">Recolha</label>
+            <div class="combo">
+              <input id="tour-hotel-q" type="search" autocomplete="off" data-i18n-placeholder="hotelPlaceholder">
+              <div class="combo-list" id="tour-hotel-list"></div>
+            </div>
+            <label class="check"><input type="checkbox" id="tour-hotel-custom"> <span data-i18n="hotelNotListed"></span></label>
+            <div id="tour-address-wrap" class="hidden" style="margin-top:8px">
+              <input id="tour-hotel-name" type="text">
+              <textarea id="tour-address" rows="2" style="margin-top:8px" data-i18n-placeholder="hotelAddressPh"></textarea>
+            </div>
+          </div>
+          <div class="grid-2" style="margin-top:12px">
+            <div class="field"><label data-i18n="firstName">Nome</label><input id="tour-first"></div>
+            <div class="field"><label data-i18n="lastName">Apelido</label><input id="tour-last"></div>
+            <div class="field"><label data-i18n="emailReq">E-mail *</label><input id="tour-email" type="email"></div>
+            <div class="field"><label data-i18n="phoneReq">Telefone *</label><input id="tour-phone" type="tel"></div>
+          </div>
+          <div class="totalbar"><span data-i18n="totalEst"></span><b id="tour-total">0 €</b></div>
+          <p class="err" id="err-tour"></p>
+          <div class="row-actions">
+            <button class="btn btn-ghost" type="button" onclick="closeTourBook()" data-i18n="back">Voltar</button>
+            <button class="btn btn-navy" type="button" onclick="submitTour()" data-i18n="submit">Confirmar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="fleet">
+    <div class="wrap">
+      <div class="kicker" data-i18n="fleetKicker">Frota</div>
+      <h2 data-i18n="fleetTitle"></h2>
+      <div class="cards-2" id="fleet-grid" style="margin-top:24px"></div>
+    </div>
+  </section>
+
+  <section class="section" id="how" style="padding-top:0">
+    <div class="wrap">
+      <div class="kicker" data-i18n="howKicker"></div>
+      <h2 data-i18n="howTitle"></h2>
+      <div class="how">
+        <article><b>01</b><h3 data-i18n="h1t"></h3><p data-i18n="h1d"></p></article>
+        <article><b>02</b><h3 data-i18n="h2t"></h3><p data-i18n="h2d"></p></article>
+        <article><b>03</b><h3 data-i18n="h3t"></h3><p data-i18n="h3d"></p></article>
+        <article><b>04</b><h3 data-i18n="h4t"></h3><p data-i18n="h4d"></p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="about">
+    <div class="wrap about-grid">
+      <div>
+        <div class="kicker" data-i18n="aboutKicker"></div>
+        <h2 data-i18n="aboutTitle"></h2>
+        <p class="lead" data-i18n="aboutBody"></p>
+      </div>
+      <div class="about-photo" role="img" aria-label="Lisboa"></div>
+    </div>
+  </section>
+
+  <section class="section" id="track" style="padding-top:0">
+    <div class="wrap">
+      <div class="track-card">
+        <div class="kicker" data-i18n="navTrack"></div>
+        <h2 data-i18n="trackTitle"></h2>
+        <p class="lead" data-i18n="trackLead"></p>
+        <div class="grid-2" style="margin-top:16px">
+          <div class="field"><label data-i18n="trackRef"></label><input id="track-ref" placeholder="RU-2608-12345"></div>
+          <div class="field"><label data-i18n="trackEmail"></label><input id="track-email" type="email"></div>
+          <div class="field"><label data-i18n="trackPhone"></label><input id="track-phone" type="tel"></div>
+        </div>
+        <p class="meta" data-i18n="trackOr" style="margin:8px 0 0"></p>
+        <div class="row-actions">
+          <span></span>
+          <button class="btn btn-navy" type="button" onclick="trackBooking()" data-i18n="trackBtn">Consultar</button>
+        </div>
+        <p class="err" id="err-track"></p>
+        <div id="track-result" class="result hidden"></div>
+      </div>
+      <div class="track-card" id="account-history" style="margin-top:18px">
+        <h2 data-i18n="myBookings"></h2>
+        <div id="account-bookings"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="contact">
+    <div class="wrap contact-grid">
+      <div>
+        <div class="kicker" data-i18n="navContact"></div>
+        <h2 data-i18n="contactTitle"></h2>
+        <p class="lead" data-i18n="contactLead"></p>
+      </div>
+      <div>
+        <p><strong data-i18n="phone"></strong><br><a id="contact-phone"></a></p>
+        <p><strong data-i18n="email"></strong><br><a id="contact-email"></a></p>
+        <p><a class="btn btn-gold" id="wa-link" target="_blank" rel="noopener">WhatsApp</a></p>
+      </div>
+    </div>
+  </section>
+
+  <a class="wa-float" id="wa-float" href="https://wa.me/351210000000" target="_blank" rel="noopener" aria-label="WhatsApp">
+    <span class="wa-pulse"></span>
+    <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M20.5 3.5A11 11 0 0 0 2.1 17.7L1 23l5.4-1.1A11 11 0 1 0 20.5 3.5zm-8.5 17a9 9 0 0 1-4.6-1.3l-.3-.2-3.2.7.7-3.1-.2-.3A9 9 0 1 1 12 20.5zm5.2-6.7c-.3-.1-1.6-.8-1.9-.9s-.4-.1-.6.1-.7.9-.8 1-.3.2-.6.1a7.4 7.4 0 0 1-2.2-1.4 8.2 8.2 0 0 1-1.5-1.9c-.2-.3 0-.4.1-.6l.4-.5.1-.3c0-.1 0-.3 0-.4s-.6-1.5-.8-2-.4-.5-.6-.5h-.5c-.2 0-.4.1-.6.3s-.8.8-.8 1.9.8 2.2.9 2.3c.1.2 1.6 2.5 3.8 3.5 2.2 1 2.2.7 2.6.6s1.3-.5 1.5-1 .2-.9.1-1-.2-.2-.5-.3z"/></svg>
+    WhatsApp
+  </a>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div><strong>Agence Ruelas</strong> · Lisboa</div>
+      <div data-i18n="footerLegal"></div>
+    </div>
+  </footer>
+
+  <div class="overlay lb" id="lb-overlay" role="dialog" aria-modal="true" aria-labelledby="lb-place" onclick="if(event.target===this)closeGallery()">
+    <div class="lb-frame" id="lb-frame">
+      <button class="lb-x" id="lb-close" type="button" onclick="closeGallery()" aria-label="Close">×</button>
+      <button class="lb-nav prev" id="lb-prev" type="button" onclick="galleryStep(-1)" aria-label="Previous">‹</button>
+      <figure class="lb-stage" id="lb-stage">
+        <img id="lb-img" alt="">
+        <figcaption>
+          <strong id="lb-place"></strong>
+          <span id="lb-cap"></span>
+          <em id="lb-count"></em>
+        </figcaption>
+      </figure>
+      <button class="lb-nav next" id="lb-next" type="button" onclick="galleryStep(1)" aria-label="Next">›</button>
+      <div class="lb-stops" id="lb-stops"></div>
+      <div class="lb-strip" id="lb-strip"></div>
+      <p class="lb-credit" id="lb-credit"></p>
+    </div>
+  </div>
+
+  <div class="overlay" id="voucher-overlay" onclick="if(event.target===this)closeVoucher()">
+    <div class="modal" id="print-voucher">
+      <div class="kicker">Agence Ruelas</div>
+      <h2 data-i18n="voucherTitle"></h2>
+      <p data-i18n="voucherLead"></p>
+      <p class="ref" id="voucher-id"></p>
+      <div id="voucher-body"></div>
+      <div class="row-actions">
+        <button class="btn btn-ghost" type="button" onclick="window.print()" data-i18n="printVoucher"></button>
+        <button class="btn btn-navy" type="button" onclick="closeVoucher()" data-i18n="newBooking"></button>
+      </div>
+    </div>
+  </div>
+
+  <div class="overlay" id="auth-overlay" onclick="if(event.target===this)closeAuth()">
+    <div class="modal">
+      <div class="kicker" data-i18n="accountBtn"></div>
+      <h2 id="auth-title" data-i18n="login"></h2>
+      <div class="types" style="margin:12px 0">
+        <button type="button" id="auth-tab-login" class="on" onclick="setAuthTab('login')" data-i18n="login"></button>
+        <button type="button" id="auth-tab-register" onclick="setAuthTab('register')" data-i18n="register"></button>
+      </div>
+      <div id="auth-login">
+        <div class="field"><label data-i18n="emailReq"></label><input id="auth-login-email" type="email"></div>
+        <div class="field" style="margin-top:8px"><label data-i18n="password"></label><input id="auth-login-pass" type="password"></div>
+        <p class="err" id="err-auth"></p>
+        <button class="btn btn-navy" type="button" onclick="doLogin()" data-i18n="login" style="margin-top:12px;width:100%"></button>
+      </div>
+      <div id="auth-register" class="hidden">
+        <div class="grid-2">
+          <div class="field"><label data-i18n="firstName"></label><input id="auth-reg-first"></div>
+          <div class="field"><label data-i18n="lastName"></label><input id="auth-reg-last"></div>
+        </div>
+        <div class="field" style="margin-top:8px"><label data-i18n="emailReq"></label><input id="auth-reg-email" type="email"></div>
+        <div class="field" style="margin-top:8px"><label data-i18n="phoneReq"></label><input id="auth-reg-phone" type="tel"></div>
+        <div class="field" style="margin-top:8px"><label data-i18n="password"></label><input id="auth-reg-pass" type="password"></div>
+        <p class="err" id="err-auth-reg"></p>
+        <button class="btn btn-navy" type="button" onclick="doRegister()" data-i18n="register" style="margin-top:12px;width:100%"></button>
+      </div>
+    </div>
+  </div>
+
+  <script src="data.js"></script>
+  <script src="hotels.js"></script>
+  <script src="tours.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
