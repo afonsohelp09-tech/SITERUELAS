@@ -439,7 +439,14 @@
       <button class="lb-x" id="lb-close" type="button" onclick="closeGallery()" aria-label="Close">×</button>
       <button class="lb-nav prev" id="lb-prev" type="button" onclick="galleryStep(-1)" aria-label="Previous">‹</button>
       <figure class="lb-stage" id="lb-stage">
-        <img id="lb-img" alt="">
+        <div class="lb-viewport" id="lb-viewport">
+          <img id="lb-img" alt="" draggable="false">
+        </div>
+        <div class="lb-zoom-bar" id="lb-zoom-bar">
+          <button type="button" id="lb-zoom-out" aria-label="Zoom out">−</button>
+          <button type="button" id="lb-zoom-reset" aria-label="Reset zoom"><span id="lb-zoom-pct">100%</span></button>
+          <button type="button" id="lb-zoom-in" aria-label="Zoom in">+</button>
+        </div>
         <figcaption>
           <strong id="lb-place"></strong>
           <span id="lb-cap"></span>
